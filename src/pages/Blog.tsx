@@ -12,37 +12,37 @@ const Blog = () => {
       id: 'what-is-ambigram',
       title: 'What is an Ambigram? Complete Guide to Rotational Typography',
       excerpt: 'Discover the fascinating world of ambigrams - text that reads the same when rotated 180 degrees. Learn about different types, history, and how to create your own.',
-      date: '2024-12-10',
+      date: '2025-06-10',
       readTime: '8 min read',
       category: 'Beginner Guide',
-      image: '/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png'
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop'
     },
     {
       id: 'ambigram-tattoo-designs',
       title: 'Ambigram Tattoo Designs: Ultimate Guide for Meaningful Body Art',
       excerpt: 'Explore stunning ambigram tattoo ideas and learn why they make perfect tattoos. From name ambigrams to inspirational words - find your perfect design.',
-      date: '2024-12-08',
+      date: '2025-06-08',
       readTime: '12 min read',
       category: 'Tattoo Design',
-      image: '/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png'
+      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop'
     },
     {
       id: 'create-perfect-ambigram',
       title: 'How to Create the Perfect Ambigram: Step-by-Step Tutorial',
       excerpt: 'Master the art of ambigram creation with our comprehensive tutorial. Learn professional techniques, font selection, and design principles.',
-      date: '2024-12-05',
+      date: '2025-06-05',
       readTime: '15 min read',
       category: 'Tutorial',
-      image: '/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png'
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop'
     },
     {
       id: 'ambigram-logo-design',
       title: 'Ambigram Logo Design: Creating Memorable Brand Identity',
       excerpt: 'Learn how to use ambigrams in logo design to create unique, memorable brand identities. Discover famous ambigram logos and design principles.',
-      date: '2024-12-03',
+      date: '2025-06-03',
       readTime: '10 min read',
       category: 'Logo Design',
-      image: '/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png'
+      image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=600&fit=crop'
     }
   ];
 
@@ -67,11 +67,11 @@ const Blog = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {blogPosts.map((post) => (
             <Card key={post.id} className="shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center">
+              <div className="aspect-video bg-gradient-to-br from-purple-100 to-blue-100 overflow-hidden">
                 <img 
                   src={post.image} 
                   alt={post.title}
-                  className="w-16 h-16 opacity-60"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <CardHeader>

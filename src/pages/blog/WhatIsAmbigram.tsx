@@ -27,7 +27,7 @@ const WhatIsAmbigram = () => {
             <div className="flex items-center gap-4 text-white/80 text-sm">
               <div className="flex items-center">
                 <Calendar className="w-4 h-4 mr-1" />
-                December 10, 2024
+                June 10, 2025
               </div>
               <div className="flex items-center">
                 <Clock className="w-4 h-4 mr-1" />
