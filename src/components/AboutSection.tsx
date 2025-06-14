@@ -7,7 +7,7 @@ const AboutSection = () => {
     <section id="about" className="bg-white py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">About AmbiCraft</h2>
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">About Ambigram</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             We're passionate about typography and the art of ambigrams. Our mission is to make 
             professional ambigram creation accessible to everyone.
