@@ -40,18 +40,20 @@ const Contact = () => {
       {/* Header */}
       <header className="relative bg-hero-gradient">
         <div className="absolute inset-0 bg-black/20"></div>
-        <Navigation />
-        <div className="relative container mx-auto px-4 py-12">
+        <div className="relative z-20">
+          <Navigation />
+        </div>
+        <div className="relative container mx-auto px-4 py-20 pt-24">
           <div className="text-center text-white">
             <Link to="/" className="inline-block mb-4">
-              <h1 className="text-3xl font-playfair font-bold hover:text-yellow-300 transition-colors">
+              <h1 className="text-2xl md:text-3xl font-playfair font-bold hover:text-yellow-300 transition-colors">
                 Ambigram Generator
               </h1>
             </Link>
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl font-playfair font-bold mb-4">
               Contact Us
             </h2>
-            <p className="text-lg max-w-2xl mx-auto">
+            <p className="text-base md:text-lg max-w-2xl mx-auto">
               Have questions about our ambigram generator? We'd love to hear from you.
             </p>
           </div>
@@ -59,16 +61,16 @@ const Contact = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
                 <Send className="w-5 h-5 text-ambigram-purple" />
                 Send us a Message
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm md:text-base">
                 Fill out the form below and we'll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
@@ -83,6 +85,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="Your name"
                       required
+                      className="w-full"
                     />
                   </div>
                   <div>
@@ -94,6 +97,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="your@email.com"
                       required
+                      className="w-full"
                     />
                   </div>
                 </div>
@@ -105,6 +109,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="What's this about?"
                     required
+                    className="w-full"
                   />
                 </div>
                 <div>
@@ -116,6 +121,7 @@ const Contact = () => {
                     placeholder="Tell us more..."
                     rows={5}
                     required
+                    className="w-full resize-none"
                   />
                 </div>
                 <Button type="submit" className="w-full bg-ambigram-purple hover:bg-ambigram-purple/90">

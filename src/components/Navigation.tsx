@@ -13,6 +13,13 @@ import { cn } from '@/lib/utils';
 
 const Navigation = () => {
   const handleScrollToSection = (sectionId: string) => {
+    // Check if we're on the home page
+    if (window.location.pathname !== '/') {
+      // If not on home page, navigate to home first then scroll
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -20,16 +27,16 @@ const Navigation = () => {
   };
 
   return (
-    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
-      <NavigationMenu>
-        <NavigationMenuList className="bg-white/10 backdrop-blur-md rounded-full px-6 py-2">
+    <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-sm md:max-w-none px-4 md:px-0">
+      <NavigationMenu className="w-full">
+        <NavigationMenuList className="bg-white/10 backdrop-blur-md rounded-full px-3 md:px-6 py-2 flex-wrap justify-center gap-1 md:gap-0">
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link
                 to="/"
                 className={cn(
                   navigationMenuTriggerStyle(),
-                  "bg-transparent text-white hover:bg-white/20 hover:text-white"
+                  "bg-transparent text-white hover:bg-white/20 hover:text-white text-sm md:text-base px-3 md:px-4 py-1 md:py-2"
                 )}
               >
                 Home
@@ -42,7 +49,7 @@ const Navigation = () => {
                 onClick={() => handleScrollToSection('about')}
                 className={cn(
                   navigationMenuTriggerStyle(),
-                  "bg-transparent text-white hover:bg-white/20 hover:text-white"
+                  "bg-transparent text-white hover:bg-white/20 hover:text-white text-sm md:text-base px-3 md:px-4 py-1 md:py-2"
                 )}
               >
                 About
@@ -55,7 +62,7 @@ const Navigation = () => {
                 onClick={() => handleScrollToSection('faq')}
                 className={cn(
                   navigationMenuTriggerStyle(),
-                  "bg-transparent text-white hover:bg-white/20 hover:text-white"
+                  "bg-transparent text-white hover:bg-white/20 hover:text-white text-sm md:text-base px-3 md:px-4 py-1 md:py-2"
                 )}
               >
                 FAQ
