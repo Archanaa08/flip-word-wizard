@@ -8,7 +8,8 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { RotateCcw, Download, Share2, Palette, Type, Sparkles, Zap, Eye, Heart, Users, Award, Lightbulb, HelpCircle } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { RotateCcw, Download, Share2, Palette, Type, Sparkles, Zap, Eye, Heart, Users, Award, Lightbulb, HelpCircle, RefreshCw, Settings, Camera } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 
@@ -16,60 +17,196 @@ const Index = () => {
   const [inputText, setInputText] = useState('LOVE');
   const [selectedFont, setSelectedFont] = useState('playfair');
   const [textColor, setTextColor] = useState('#8B5CF6');
+  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
   const [fontSize, setFontSize] = useState([48]);
   const [isRotated, setIsRotated] = useState(false);
   const [letterSpacing, setLetterSpacing] = useState([0]);
+  const [strokeWidth, setStrokeWidth] = useState([0]);
+  const [shadowBlur, setShadowBlur] = useState([0]);
+  const [rotation, setRotation] = useState([0]);
+  const [skewX, setSkewX] = useState([0]);
+  const [showGrid, setShowGrid] = useState(false);
+  const [showOutline, setShowOutline] = useState(false);
   const { toast } = useToast();
 
   const fonts = [
-    { value: 'playfair', label: 'Playfair Display', class: 'font-playfair' },
-    { value: 'inter', label: 'Inter', class: 'font-inter' },
-    { value: 'serif', label: 'Times New Roman', class: 'font-serif' },
-    { value: 'mono', label: 'Monospace', class: 'font-mono' },
-    { value: 'creepster', label: 'Creepster', class: 'font-creepster' },
-    { value: 'nosifer', label: 'Nosifer', class: 'font-nosifer' },
-    { value: 'metal', label: 'Metal Mania', class: 'font-metal' },
-    { value: 'eater', label: 'Eater', class: 'font-eater' }
+    { value: 'playfair', label: 'Playfair Display', class: 'font-playfair', category: 'serif' },
+    { value: 'inter', label: 'Inter', class: 'font-inter', category: 'sans-serif' },
+    { value: 'serif', label: 'Times New Roman', class: 'font-serif', category: 'serif' },
+    { value: 'mono', label: 'Courier New', class: 'font-mono', category: 'monospace' },
+    { value: 'creepster', label: 'Creepster', class: 'font-creepster', category: 'tattoo' },
+    { value: 'nosifer', label: 'Nosifer', class: 'font-nosifer', category: 'tattoo' },
+    { value: 'metal', label: 'Metal Mania', class: 'font-metal', category: 'tattoo' },
+    { value: 'eater', label: 'Eater', class: 'font-eater', category: 'tattoo' },
+    { value: 'arial', label: 'Arial', class: 'font-sans', category: 'sans-serif' },
+    { value: 'georgia', label: 'Georgia', class: 'font-serif', category: 'serif' },
+    { value: 'helvetica', label: 'Helvetica', class: 'font-sans', category: 'sans-serif' },
+    { value: 'verdana', label: 'Verdana', class: 'font-sans', category: 'sans-serif' },
   ];
+
+  const fontCategories = [
+    { value: 'all', label: 'All Fonts' },
+    { value: 'serif', label: 'Serif' },
+    { value: 'sans-serif', label: 'Sans Serif' },
+    { value: 'monospace', label: 'Monospace' },
+    { value: 'tattoo', label: 'Tattoo Style' },
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredFonts = selectedCategory === 'all' 
+    ? fonts 
+    : fonts.filter(font => font.category === selectedCategory);
 
   const colors = [
     '#8B5CF6', '#3B82F6', '#6366F1', '#EC4899', 
-    '#EF4444', '#F59E0B', '#10B981', '#6B7280'
+    '#EF4444', '#F59E0B', '#10B981', '#6B7280',
+    '#000000', '#FFFFFF', '#FF6B6B', '#4ECDC4',
+    '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'
+  ];
+
+  const backgroundColors = [
+    '#FFFFFF', '#000000', '#F8F9FA', '#343A40',
+    '#FFF3CD', '#D4EDDA', '#D1ECF1', '#F8D7DA',
+    '#E2E3E5', '#F5F5F5', '#FFEAA7', '#DDA0DD'
   ];
 
   const examples = [
-    'LOVE', 'HOPE', 'PEACE', 'DREAM', 'MAGIC', 'POWER'
+    'LOVE', 'HOPE', 'PEACE', 'DREAM', 'MAGIC', 'POWER',
+    'FAITH', 'ANGEL', 'FAMILY', 'INFINITY', 'DESTINY', 'HONOR'
+  ];
+
+  const presets = [
+    { name: 'Classic', font: 'playfair', color: '#000000', bg: '#FFFFFF', size: 48 },
+    { name: 'Modern', font: 'inter', color: '#6366F1', bg: '#F8F9FA', size: 52 },
+    { name: 'Tattoo Dark', font: 'creepster', color: '#FFFFFF', bg: '#000000', size: 44 },
+    { name: 'Gothic', font: 'nosifer', color: '#8B0000', bg: '#2F2F2F', size: 50 },
+    { name: 'Metal', font: 'metal', color: '#FFD700', bg: '#1A1A1A', size: 46 },
+    { name: 'Horror', font: 'eater', color: '#FF4500', bg: '#000000', size: 48 }
   ];
 
   const handleDownload = () => {
+    // Create canvas and draw the ambigram
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = 800;
+    canvas.height = 400;
+    
+    if (ctx) {
+      // Set background
+      ctx.fillStyle = backgroundColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Set text properties
+      const selectedFontClass = fonts.find(f => f.value === selectedFont)?.label || 'Arial';
+      ctx.font = `bold ${fontSize[0]}px ${selectedFontClass}`;
+      ctx.fillStyle = textColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      // Add shadow if enabled
+      if (shadowBlur[0] > 0) {
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = shadowBlur[0];
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+      }
+      
+      // Draw text
+      ctx.fillText(inputText.toUpperCase(), canvas.width / 2, canvas.height / 2);
+      
+      // Download
+      const link = document.createElement('a');
+      link.download = `ambigram-${inputText.toLowerCase()}.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+    
     toast({
       title: "Download Started",
-      description: "Your ambigram is being prepared for download.",
+      description: "Your ambigram has been downloaded as PNG.",
     });
   };
 
   const handleShare = () => {
+    const shareData = {
+      title: `${inputText} Ambigram - AmbiCraft`,
+      text: `Check out this cool ambigram I created: ${inputText}`,
+      url: window.location.href
+    };
+    
+    if (navigator.share) {
+      navigator.share(shareData);
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast({
+        title: "Link Copied",
+        description: "Ambigram link has been copied to clipboard.",
+      });
+    }
+  };
+
+  const applyPreset = (preset: typeof presets[0]) => {
+    setSelectedFont(preset.font);
+    setTextColor(preset.color);
+    setBackgroundColor(preset.bg);
+    setFontSize([preset.size]);
     toast({
-      title: "Link Copied",
-      description: "Ambigram link has been copied to clipboard.",
+      title: "Preset Applied",
+      description: `${preset.name} style has been applied to your ambigram.`,
+    });
+  };
+
+  const generateRandom = () => {
+    const randomExample = examples[Math.floor(Math.random() * examples.length)];
+    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    const randomBg = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+    
+    setInputText(randomExample);
+    setSelectedFont(randomFont.value);
+    setTextColor(randomColor);
+    setBackgroundColor(randomBg);
+    setFontSize([Math.floor(Math.random() * 40) + 30]);
+    
+    toast({
+      title: "Random Style Generated",
+      description: "A random ambigram style has been applied!",
     });
   };
 
   const renderAmbigram = () => {
     const selectedFontClass = fonts.find(f => f.value === selectedFont)?.class || 'font-playfair';
     
+    const textStyle = {
+      fontSize: `${fontSize[0]}px`,
+      color: textColor,
+      letterSpacing: `${letterSpacing[0]}px`,
+      textShadow: shadowBlur[0] > 0 ? `${shadowBlur[0]}px ${shadowBlur[0]}px ${shadowBlur[0] * 2}px rgba(0,0,0,0.3)` : 'none',
+      WebkitTextStroke: strokeWidth[0] > 0 ? `${strokeWidth[0]}px ${textColor}` : 'none',
+      transform: `rotate(${rotation[0]}deg) skewX(${skewX[0]}deg) ${isRotated ? 'rotate(180deg)' : ''}`,
+      transition: 'all 0.3s ease'
+    };
+
     return (
       <div 
-        className={`${selectedFontClass} font-bold select-none transition-all duration-500 ${
-          isRotated ? 'transform rotate-180' : ''
-        }`}
-        style={{
-          fontSize: `${fontSize[0]}px`,
-          color: textColor,
-          letterSpacing: `${letterSpacing[0]}px`,
-          textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
-        }}
+        className={`${selectedFontClass} font-bold select-none transition-all duration-500 relative`}
+        style={textStyle}
       >
+        {showOutline && (
+          <div 
+            className="absolute inset-0"
+            style={{
+              ...textStyle,
+              color: 'transparent',
+              WebkitTextStroke: `2px ${textColor}`,
+              zIndex: -1
+            }}
+          >
+            {inputText.toUpperCase()}
+          </div>
+        )}
         {inputText.toUpperCase()}
       </div>
     );
@@ -137,7 +274,7 @@ const Index = () => {
                     maxLength={20}
                   />
                   <div className="flex flex-wrap gap-2 mt-3">
-                    {examples.map((example) => (
+                    {examples.slice(0, 6).map((example) => (
                       <Button
                         key={example}
                         variant="outline"
@@ -151,13 +288,49 @@ const Index = () => {
                   </div>
                 </div>
 
-                <Tabs defaultValue="style" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="style">Style</TabsTrigger>
+                {/* Quick Presets */}
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Quick Presets</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {presets.map((preset) => (
+                      <Button
+                        key={preset.name}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => applyPreset(preset)}
+                        className="text-xs h-8"
+                      >
+                        {preset.name}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <Tabs defaultValue="fonts" className="w-full">
+                  <TabsList className="grid w-full grid-cols-4">
+                    <TabsTrigger value="fonts">Fonts</TabsTrigger>
                     <TabsTrigger value="colors">Colors</TabsTrigger>
+                    <TabsTrigger value="effects">Effects</TabsTrigger>
+                    <TabsTrigger value="advanced">Advanced</TabsTrigger>
                   </TabsList>
                   
-                  <TabsContent value="style" className="space-y-4">
+                  <TabsContent value="fonts" className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Font Category</label>
+                      <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {fontCategories.map((category) => (
+                            <SelectItem key={category.value} value={category.value}>
+                              {category.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
                     <div>
                       <label className="text-sm font-medium mb-2 block">Font Family</label>
                       <Select value={selectedFont} onValueChange={setSelectedFont}>
@@ -165,7 +338,7 @@ const Index = () => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {fonts.map((font) => (
+                          {filteredFonts.map((font) => (
                             <SelectItem key={font.value} value={font.value}>
                               <span className={font.class}>{font.label}</span>
                             </SelectItem>
@@ -181,8 +354,8 @@ const Index = () => {
                       <Slider
                         value={fontSize}
                         onValueChange={setFontSize}
-                        max={80}
-                        min={20}
+                        max={100}
+                        min={16}
                         step={2}
                         className="w-full"
                       />
@@ -195,7 +368,7 @@ const Index = () => {
                       <Slider
                         value={letterSpacing}
                         onValueChange={setLetterSpacing}
-                        max={10}
+                        max={15}
                         min={-5}
                         step={1}
                         className="w-full"
@@ -206,7 +379,7 @@ const Index = () => {
                   <TabsContent value="colors" className="space-y-4">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Text Color</label>
-                      <div className="grid grid-cols-4 gap-2">
+                      <div className="grid grid-cols-4 gap-2 mb-2">
                         {colors.map((color) => (
                           <button
                             key={color}
@@ -222,7 +395,99 @@ const Index = () => {
                         type="color"
                         value={textColor}
                         onChange={(e) => setTextColor(e.target.value)}
-                        className="w-full h-10 mt-2"
+                        className="w-full h-10"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Background Color</label>
+                      <div className="grid grid-cols-4 gap-2 mb-2">
+                        {backgroundColors.map((color) => (
+                          <button
+                            key={color}
+                            onClick={() => setBackgroundColor(color)}
+                            className={`w-full h-10 rounded-md border-2 transition-all ${
+                              backgroundColor === color ? 'border-gray-400 scale-110' : 'border-gray-200'
+                            }`}
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
+                      </div>
+                      <Input
+                        type="color"
+                        value={backgroundColor}
+                        onChange={(e) => setBackgroundColor(e.target.value)}
+                        className="w-full h-10"
+                      />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="effects" className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Stroke Width: {strokeWidth[0]}px
+                      </label>
+                      <Slider
+                        value={strokeWidth}
+                        onValueChange={setStrokeWidth}
+                        max={5}
+                        min={0}
+                        step={0.5}
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Shadow Blur: {shadowBlur[0]}px
+                      </label>
+                      <Slider
+                        value={shadowBlur}
+                        onValueChange={setShadowBlur}
+                        max={20}
+                        min={0}
+                        step={1}
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-medium">Show Outline</label>
+                      <Switch checked={showOutline} onCheckedChange={setShowOutline} />
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm font-medium">Show Grid</label>
+                      <Switch checked={showGrid} onCheckedChange={setShowGrid} />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="advanced" className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Rotation: {rotation[0]}°
+                      </label>
+                      <Slider
+                        value={rotation}
+                        onValueChange={setRotation}
+                        max={45}
+                        min={-45}
+                        step={1}
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Skew X: {skewX[0]}°
+                      </label>
+                      <Slider
+                        value={skewX}
+                        onValueChange={setSkewX}
+                        max={30}
+                        min={-30}
+                        step={1}
+                        className="w-full"
                       />
                     </div>
                   </TabsContent>
@@ -231,26 +496,31 @@ const Index = () => {
             </Card>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 gap-3">
               <Button
                 onClick={() => setIsRotated(!isRotated)}
-                className="flex-1 bg-ambigram-purple hover:bg-ambigram-purple/90"
+                className="bg-ambigram-purple hover:bg-ambigram-purple/90"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
-                {isRotated ? 'Normal View' : 'Rotate 180°'}
+                {isRotated ? 'Normal' : 'Rotate 180°'}
+              </Button>
+              <Button
+                onClick={generateRandom}
+                variant="outline"
+              >
+                <RefreshCw className="w-4 h-4 mr-2" />
+                Random
               </Button>
               <Button
                 onClick={handleDownload}
                 variant="outline"
-                className="flex-1"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Download
+                Download PNG
               </Button>
               <Button
                 onClick={handleShare}
                 variant="outline"
-                className="flex-1"
               >
                 <Share2 className="w-4 h-4 mr-2" />
                 Share
@@ -268,12 +538,19 @@ const Index = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-12 min-h-[300px] flex items-center justify-center border-2 border-dashed border-gray-200">
+                <div 
+                  className="rounded-xl p-12 min-h-[300px] flex items-center justify-center border-2 border-dashed border-gray-200 relative overflow-hidden"
+                  style={{ 
+                    backgroundColor: backgroundColor,
+                    backgroundImage: showGrid ? 'radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px)' : 'none',
+                    backgroundSize: showGrid ? '20px 20px' : 'auto'
+                  }}
+                >
                   {inputText ? (
                     <div className="text-center">
                       {renderAmbigram()}
                       <p className="mt-4 text-sm text-gray-500 font-inter">
-                        {isRotated ? 'Rotated 180°' : 'Normal view'}
+                        {isRotated ? 'Rotated 180°' : 'Normal view'} • {fontSize[0]}px • {fonts.find(f => f.value === selectedFont)?.label}
                       </p>
                     </div>
                   ) : (
@@ -286,26 +563,19 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Gallery Preview */}
+            {/* Quick Examples Gallery */}
             <Card className="mt-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair">Featured Ambigrams</CardTitle>
+                <CardTitle className="text-lg font-playfair">Popular Ambigrams</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
-                  {examples.slice(0, 4).map((example, index) => (
-                    <div key={example} className="bg-gray-50 rounded-lg p-4 text-center">
-                      <div className="font-playfair text-2xl font-bold text-ambigram-purple mb-2">
+                  {examples.slice(0, 8).map((example, index) => (
+                    <div key={example} className={`bg-gradient-to-br ${index % 2 === 0 ? 'from-gray-50 to-gray-100' : 'from-purple-50 to-indigo-50'} rounded-lg p-3 text-center cursor-pointer transition-all hover:scale-105`} onClick={() => setInputText(example)}>
+                      <div className={`font-playfair text-lg font-bold ${index % 2 === 0 ? 'text-gray-700' : 'text-ambigram-purple'} mb-1`}>
                         {example}
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setInputText(example)}
-                        className="text-xs"
-                      >
-                        Use This
-                      </Button>
+                      <p className="text-xs text-gray-500">Click to use</p>
                     </div>
                   ))}
                 </div>
