@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2024 AmbiCraft. All rights reserved. | Professional Ambigram Generator</p>
+          <p>&copy; 2024 createambigram.online. All rights reserved. | Professional Ambigram Generator</p>
         </div>
       </div>
     </footer>

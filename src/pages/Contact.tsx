@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,8 +38,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Header */}
-      <header className="bg-hero-gradient">
+      <header className="relative bg-hero-gradient">
         <div className="absolute inset-0 bg-black/20"></div>
+        <Navigation />
         <div className="relative container mx-auto px-4 py-12">
           <div className="text-center text-white">
             <Link to="/" className="inline-block mb-4">
@@ -124,6 +127,8 @@ const Contact = () => {
           </Card>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
