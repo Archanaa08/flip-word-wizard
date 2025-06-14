@@ -93,7 +93,7 @@ const GeneratorControls = ({
 
   return (
     <div className="space-y-6">
-      <Card className="shadow-2xl border-0 bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/40 backdrop-blur-sm relative overflow-hidden">
+      <Card className="shadow-2xl border-0 bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/40 dark:from-gray-800 dark:via-gray-800/80 dark:to-gray-900/60 backdrop-blur-sm relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-ambigram-purple/10 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-ambigram-blue/10 to-transparent rounded-full translate-y-12 -translate-x-12"></div>
@@ -106,7 +106,7 @@ const GeneratorControls = ({
             </div>
             Ambigram Generator
           </CardTitle>
-          <CardDescription className="text-lg text-gray-600 font-medium">
+          <CardDescription className="text-lg text-gray-600 dark:text-gray-300 font-medium">
             ✨ Transform your text into stunning ambigrams with professional design tools
           </CardDescription>
           <div className="flex items-center gap-2 mt-2 text-sm text-ambigram-purple font-medium">
@@ -116,7 +116,7 @@ const GeneratorControls = ({
         </CardHeader>
         <CardContent className="space-y-8 relative">
           <div className="relative">
-            <label className="text-sm font-semibold mb-3 block text-gray-700 flex items-center gap-2">
+            <label className="text-sm font-semibold mb-3 block text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <Type className="w-4 h-4 text-ambigram-purple" />
               Text Input
             </label>
@@ -124,14 +124,14 @@ const GeneratorControls = ({
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Enter your text to create magic ✨"
-              className="text-xl font-medium h-14 border-2 border-purple-200 focus:border-ambigram-purple transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-lg"
+              className="text-xl font-medium h-14 border-2 border-purple-200 dark:border-purple-600 focus:border-ambigram-purple transition-all duration-300 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm shadow-lg text-gray-900 dark:text-white"
               maxLength={20}
             />
-            <div className="text-xs text-gray-500 mt-1 text-right">{inputText.length}/20 characters</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">{inputText.length}/20 characters</div>
             
             {/* Enhanced example buttons */}
             <div className="mt-4">
-              <p className="text-sm font-medium text-gray-600 mb-3 flex items-center gap-2">
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-3 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-ambigram-pink" />
                 Try these popular examples:
               </p>
@@ -156,8 +156,8 @@ const GeneratorControls = ({
           </div>
 
           {/* Enhanced Quick Presets */}
-          <div className="bg-gradient-to-r from-purple-50/50 to-blue-50/50 rounded-xl p-4 border border-purple-100">
-            <label className="text-sm font-semibold mb-3 block text-gray-700 flex items-center gap-2">
+          <div className="bg-gradient-to-r from-purple-50/50 to-blue-50/50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl p-4 border border-purple-100 dark:border-purple-700">
+            <label className="text-sm font-semibold mb-3 block text-gray-700 dark:text-gray-200 flex items-center gap-2">
               <Palette className="w-4 h-4 text-ambigram-purple" />
               Quick Style Presets
             </label>
@@ -183,7 +183,7 @@ const GeneratorControls = ({
           </div>
 
           <Tabs defaultValue="fonts" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border border-purple-100">
+            <TabsList className="grid w-full grid-cols-4 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm border border-purple-100 dark:border-purple-700">
               <TabsTrigger value="fonts" className="data-[state=active]:bg-ambigram-purple data-[state=active]:text-white">Fonts</TabsTrigger>
               <TabsTrigger value="colors" className="data-[state=active]:bg-ambigram-blue data-[state=active]:text-white">Colors</TabsTrigger>
               <TabsTrigger value="effects" className="data-[state=active]:bg-ambigram-indigo data-[state=active]:text-white">Effects</TabsTrigger>
@@ -192,7 +192,7 @@ const GeneratorControls = ({
             
             <TabsContent value="fonts" className="space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Font Category</label>
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">Font Category</label>
                 <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                   <SelectTrigger>
                     <SelectValue />
@@ -208,7 +208,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">Font Family</label>
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">Font Family</label>
                 <Select value={selectedFont} onValueChange={setSelectedFont}>
                   <SelectTrigger>
                     <SelectValue />
@@ -224,7 +224,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Font Size: {fontSize[0]}px
                 </label>
                 <Slider
@@ -238,7 +238,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Letter Spacing: {letterSpacing[0]}px
                 </label>
                 <Slider
@@ -254,7 +254,7 @@ const GeneratorControls = ({
 
             <TabsContent value="colors" className="space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Text Color</label>
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">Text Color</label>
                 <div className="grid grid-cols-4 gap-2 mb-2">
                   {colors.map((color) => (
                     <button
@@ -276,7 +276,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">Background Color</label>
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">Background Color</label>
                 <div className="grid grid-cols-4 gap-2 mb-2">
                   {backgroundColors.map((color) => (
                     <button
@@ -300,7 +300,7 @@ const GeneratorControls = ({
 
             <TabsContent value="effects" className="space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Stroke Width: {strokeWidth[0]}px
                 </label>
                 <Slider
@@ -314,7 +314,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Shadow Blur: {shadowBlur[0]}px
                 </label>
                 <Slider
@@ -328,19 +328,19 @@ const GeneratorControls = ({
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Show Outline</label>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Show Outline</label>
                 <Switch checked={showOutline} onCheckedChange={setShowOutline} />
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Show Grid</label>
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-200">Show Grid</label>
                 <Switch checked={showGrid} onCheckedChange={setShowGrid} />
               </div>
             </TabsContent>
 
             <TabsContent value="advanced" className="space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Rotation: {rotation[0]}°
                 </label>
                 <Slider
@@ -354,7 +354,7 @@ const GeneratorControls = ({
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label className="text-sm font-medium mb-2 block text-gray-700 dark:text-gray-200">
                   Skew X: {skewX[0]}°
                 </label>
                 <Slider
