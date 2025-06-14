@@ -1,11 +1,13 @@
 
 import { Sparkles, Zap, Eye, Heart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import Navigation from './Navigation';
 
 const Header = () => {
   return (
     <header className="relative overflow-hidden bg-hero-gradient">
       <div className="absolute inset-0 bg-black/20"></div>
+      <Navigation />
       <div className="relative container mx-auto px-4 py-20">
         <div className="text-center text-white">
           <div className="flex items-center justify-center gap-2 mb-4">

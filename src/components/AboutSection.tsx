@@ -4,7 +4,7 @@ import { Users, Award, Lightbulb } from 'lucide-react';
 
 const AboutSection = () => {
   return (
-    <section className="bg-white py-16">
+    <section id="about" className="bg-white py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">About AmbiCraft</h2>
