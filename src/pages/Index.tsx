@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
-import { RotateCcw, Download, Share2, Palette, Type, Sparkles, Zap, Eye, Heart } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { RotateCcw, Download, Share2, Palette, Type, Sparkles, Zap, Eye, Heart, Users, Award, Lightbulb, HelpCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [inputText, setInputText] = useState('LOVE');
@@ -23,7 +25,11 @@ const Index = () => {
     { value: 'playfair', label: 'Playfair Display', class: 'font-playfair' },
     { value: 'inter', label: 'Inter', class: 'font-inter' },
     { value: 'serif', label: 'Times New Roman', class: 'font-serif' },
-    { value: 'mono', label: 'Monospace', class: 'font-mono' }
+    { value: 'mono', label: 'Monospace', class: 'font-mono' },
+    { value: 'creepster', label: 'Creepster', class: 'font-creepster' },
+    { value: 'nosifer', label: 'Nosifer', class: 'font-nosifer' },
+    { value: 'metal', label: 'Metal Mania', class: 'font-metal' },
+    { value: 'eater', label: 'Eater', class: 'font-eater' }
   ];
 
   const colors = [
@@ -309,17 +315,161 @@ const Index = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-8">
-            <h3 className="text-2xl font-playfair font-bold mb-4">AmbiCraft</h3>
-            <p className="text-gray-400 font-inter max-w-2xl mx-auto">
-              Professional ambigram generator for designers, artists, and typography enthusiasts. 
-              Create perfect rotational symmetry in your text designs.
+      {/* About Section */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">About AmbiCraft</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We're passionate about typography and the art of ambigrams. Our mission is to make 
+              professional ambigram creation accessible to everyone.
             </p>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-sm text-gray-400">
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="shadow-lg text-center">
+              <CardContent className="pt-8">
+                <Users className="w-12 h-12 text-ambigram-purple mx-auto mb-4" />
+                <h3 className="text-xl font-playfair font-bold mb-2">For Everyone</h3>
+                <p className="text-gray-600">
+                  From professional designers to typography enthusiasts, our tools are designed for all skill levels.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="shadow-lg text-center">
+              <CardContent className="pt-8">
+                <Award className="w-12 h-12 text-ambigram-blue mx-auto mb-4" />
+                <h3 className="text-xl font-playfair font-bold mb-2">Professional Quality</h3>
+                <p className="text-gray-600">
+                  Create high-quality ambigrams suitable for logos, tattoos, and professional design work.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="shadow-lg text-center">
+              <CardContent className="pt-8">
+                <Lightbulb className="w-12 h-12 text-ambigram-indigo mx-auto mb-4" />
+                <h3 className="text-xl font-playfair font-bold mb-2">Innovative Tools</h3>
+                <p className="text-gray-600">
+                  Real-time preview, multiple fonts, and advanced customization options for perfect results.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">
+              <HelpCircle className="inline w-8 h-8 mr-2 text-ambigram-purple" />
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Get answers to common questions about ambigrams and our generator tool.
+            </p>
+          </div>
+          
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-white rounded-lg px-6">
+                <AccordionTrigger className="text-left">
+                  What is an ambigram?
+                </AccordionTrigger>
+                <AccordionContent>
+                  An ambigram is a form of typographical art that reads the same when rotated 180 degrees. 
+                  The word looks identical whether viewed normally or upside down, creating a fascinating visual effect.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2" className="bg-white rounded-lg px-6">
+                <AccordionTrigger className="text-left">
+                  How do I create the perfect ambigram?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Start with shorter words or names for best results. Experiment with different fonts, especially our tattoo-style fonts. 
+                  Adjust letter spacing and use the rotation feature to check your design. Words with symmetrical letters work best.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-3" className="bg-white rounded-lg px-6">
+                <AccordionTrigger className="text-left">
+                  Can I use ambigrams for commercial purposes?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Yes! The ambigrams you create with our tool can be used for personal and commercial projects, 
+                  including logos, tattoos, artwork, and design projects. We encourage creative use of your designs.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-4" className="bg-white rounded-lg px-6">
+                <AccordionTrigger className="text-left">
+                  What file formats can I download?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Currently, you can download your ambigrams as high-resolution PNG files. We're working on adding 
+                  SVG and PDF export options for even more flexibility in your design projects.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-5" className="bg-white rounded-lg px-6">
+                <AccordionTrigger className="text-left">
+                  Do you offer custom ambigram design services?
+                </AccordionTrigger>
+                <AccordionContent>
+                  While our tool handles most ambigram needs automatically, we do offer custom design services for 
+                  complex projects. Contact us through our contact form to discuss your specific requirements.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 mt-20">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-2xl font-playfair font-bold mb-4">AmbiCraft</h3>
+              <p className="text-gray-400 font-inter">
+                Professional ambigram generator for designers, artists, and typography enthusiasts.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
+                <li><a href="#faq" className="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2">
+                <li><Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Support</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Support</Link></li>
+                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Report Bug</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
             <p>&copy; 2024 AmbiCraft. All rights reserved. | Professional Ambigram Generator</p>
           </div>
         </div>
