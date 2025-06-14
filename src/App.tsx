@@ -7,6 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
+import Blog from "./pages/Blog";
+import WhatIsAmbigram from "./pages/blog/WhatIsAmbigram";
+import AmbigramTattooDesigns from "./pages/blog/AmbigramTattooDesigns";
+import CreatePerfectAmbigram from "./pages/blog/CreatePerfectAmbigram";
+import AmbigramLogoDesign from "./pages/blog/AmbigramLogoDesign";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +26,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/what-is-ambigram" element={<WhatIsAmbigram />} />
+          <Route path="/blog/ambigram-tattoo-designs" element={<AmbigramTattooDesigns />} />
+          <Route path="/blog/create-perfect-ambigram" element={<CreatePerfectAmbigram />} />
+          <Route path="/blog/ambigram-logo-design" element={<AmbigramLogoDesign />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

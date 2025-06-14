@@ -62,6 +62,19 @@ const Navigation = () => {
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link
+                to="/blog"
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  "bg-transparent text-white hover:bg-white/20 hover:text-white text-sm md:text-base px-3 md:px-4 py-1 md:py-2"
+                )}
+              >
+                Blog
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link
                 to="/#faq"
                 onClick={(e) => {
                   if (window.location.pathname === '/') {
