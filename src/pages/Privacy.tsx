@@ -9,7 +9,7 @@ const Privacy = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header */}
-      <header className="bg-hero-gradient">
+      <header className="relative bg-hero-gradient">
         <div className="absolute inset-0 bg-black/20"></div>
         <Navigation />
         <div className="relative container mx-auto px-4 py-12">
