@@ -15,7 +15,7 @@ const Header = () => {
             <div className="flex items-center gap-3">
               <img 
                 src="/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png" 
-                alt="AmbiCraft Logo" 
+                alt="Free Ambigram Generator Logo - AmbiCraft" 
                 className="w-16 h-16 md:w-20 md:h-20"
               />
               <h1 className="text-5xl md:text-7xl font-playfair font-bold">
@@ -24,18 +24,22 @@ const Header = () => {
             </div>
             <Sparkles className="w-8 h-8 text-yellow-300 animate-pulse" />
           </div>
-          <p className="text-xl md:text-2xl font-inter font-light mb-8 max-w-3xl mx-auto">
-            Create stunning ambigrams that read the same when rotated 180°. 
-            Professional design tools for perfect typographic symmetry.
+          <h2 className="text-2xl md:text-3xl font-inter font-medium mb-4">
+            Free Online Ambigram Generator & Creator
+          </h2>
+          <p className="text-lg md:text-xl font-inter font-light mb-8 max-w-4xl mx-auto">
+            Create stunning ambigrams that read the same when rotated 180°. Our professional ambigram generator 
+            offers instant results with customizable fonts, colors, and effects. Design perfect rotational 
+            ambigrams for tattoos, logos, and artistic projects - completely free!
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
               <Zap className="w-4 h-4 mr-1" />
-              Instant Generation
+              Free Ambigram Generator
             </Badge>
             <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
               <Eye className="w-4 h-4 mr-1" />
-              Real-time Preview
+              Instant Preview
             </Badge>
             <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
               <Heart className="w-4 h-4 mr-1" />
