@@ -15,11 +15,11 @@ const Header = () => {
             <div className="flex items-center gap-3">
               <img 
                 src="/lovable-uploads/cb783fe1-78df-4951-a8c9-05df45088748.png" 
-                alt="Free Ambigram Generator Logo - AmbiCraft" 
+                alt="Free Ambigram Generator Logo - Ambigram Generator" 
                 className="w-16 h-16 md:w-20 md:h-20"
               />
               <h1 className="text-5xl md:text-7xl font-playfair font-bold">
-                AmbiCraft
+                Ambigram Generator
               </h1>
             </div>
             <Sparkles className="w-8 h-8 text-yellow-300 animate-pulse" />

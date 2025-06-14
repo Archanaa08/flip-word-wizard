@@ -45,7 +45,7 @@ const Contact = () => {
           <div className="text-center text-white">
             <Link to="/" className="inline-block mb-4">
               <h1 className="text-3xl font-playfair font-bold hover:text-yellow-300 transition-colors">
-                AmbiCraft
+                Ambigram Generator
               </h1>
             </Link>
             <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">

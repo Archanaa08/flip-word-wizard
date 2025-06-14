@@ -12,6 +12,13 @@ import {
 import { cn } from '@/lib/utils';
 
 const Navigation = () => {
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
       <NavigationMenu>
@@ -31,28 +38,28 @@ const Navigation = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <a
-                href="#about"
+              <button
+                onClick={() => handleScrollToSection('about')}
                 className={cn(
                   navigationMenuTriggerStyle(),
                   "bg-transparent text-white hover:bg-white/20 hover:text-white"
                 )}
               >
                 About
-              </a>
+              </button>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <a
-                href="#faq"
+              <button
+                onClick={() => handleScrollToSection('faq')}
                 className={cn(
                   navigationMenuTriggerStyle(),
                   "bg-transparent text-white hover:bg-white/20 hover:text-white"
                 )}
               >
                 FAQ
-              </a>
+              </button>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
