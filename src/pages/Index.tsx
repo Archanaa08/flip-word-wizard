@@ -9,6 +9,7 @@ import StepByStepSection from '@/components/StepByStepSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import AmbigramRenderer from '@/components/AmbigramRenderer';
+import ThemeToggle from '@/components/ThemeToggle';
 import { useAmbigramState } from '@/hooks/useAmbigramState';
 import { useAmbigramActions } from '@/utils/ambigramUtils';
 import { fonts, fontCategories, colors, backgroundColors, examples, presets } from '@/data/ambigramData';
@@ -99,7 +100,12 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 font-inter">
+      {/* Theme Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <Header />
 
       {/* Main Content */}
