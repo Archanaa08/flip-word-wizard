@@ -38,6 +38,9 @@ const Index = () => {
     { value: 'georgia', label: 'Georgia', class: 'font-serif', category: 'serif' },
     { value: 'helvetica', label: 'Helvetica', class: 'font-sans', category: 'sans-serif' },
     { value: 'verdana', label: 'Verdana', class: 'font-sans', category: 'sans-serif' },
+    { value: 'orbitron', label: 'Orbitron', class: 'font-orbitron', category: 'blocky' },
+    { value: 'audiowide', label: 'Audiowide', class: 'font-audiowide', category: 'blocky' },
+    { value: 'press-start', label: 'Press Start 2P', class: 'font-press-start', category: 'pixel' },
   ];
 
   const fontCategories = [
@@ -46,6 +49,8 @@ const Index = () => {
     { value: 'sans-serif', label: 'Sans Serif' },
     { value: 'monospace', label: 'Monospace' },
     { value: 'tattoo', label: 'Tattoo Style' },
+    { value: 'blocky', label: 'Blocky' },
+    { value: 'pixel', label: 'Pixel Art' },
   ];
 
   const colors = [

@@ -25,6 +25,9 @@ export default {
 				'nosifer': ['Nosifer', 'cursive'],
 				'metal': ['Metal Mania', 'cursive'],
 				'eater': ['Eater', 'cursive'],
+				'orbitron': ['Orbitron', 'sans-serif'],
+				'audiowide': ['Audiowide', 'cursive'],
+				'press-start': ['Press Start 2P', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
