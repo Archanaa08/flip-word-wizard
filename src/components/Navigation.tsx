@@ -20,10 +20,13 @@ const Navigation = () => {
       return;
     }
     
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Small delay to ensure the page has loaded
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
@@ -58,15 +61,22 @@ const Navigation = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
-              <button
-                onClick={() => handleScrollToSection('faq')}
+              <Link
+                to="/#faq"
+                onClick={(e) => {
+                  if (window.location.pathname === '/') {
+                    e.preventDefault();
+                    handleScrollToSection('faq');
+                  }
+                  // If not on home page, let the Link handle navigation to /#faq
+                }}
                 className={cn(
                   navigationMenuTriggerStyle(),
                   "bg-transparent text-white hover:bg-white/20 hover:text-white text-sm md:text-base px-3 md:px-4 py-1 md:py-2"
                 )}
               >
                 FAQ
-              </button>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
