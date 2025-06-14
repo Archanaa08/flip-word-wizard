@@ -42,6 +42,19 @@ const Navigation = () => {
               </a>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <a
+                href="#faq"
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  "bg-transparent text-white hover:bg-white/20 hover:text-white"
+                )}
+              >
+                FAQ
+              </a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>
