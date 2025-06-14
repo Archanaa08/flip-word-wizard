@@ -1,18 +1,22 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Eye, Lock, UserCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const Privacy = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header */}
       <header className="bg-hero-gradient">
         <div className="absolute inset-0 bg-black/20"></div>
+        <Navigation />
         <div className="relative container mx-auto px-4 py-12">
           <div className="text-center text-white">
             <Link to="/" className="inline-block mb-4">
               <h1 className="text-3xl font-playfair font-bold hover:text-yellow-300 transition-colors">
-                AmbiCraft
+                Ambigram Generator
               </h1>
             </Link>
             <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
@@ -41,7 +45,7 @@ const Privacy = () => {
             </CardHeader>
             <CardContent className="prose max-w-none">
               <p>
-                At AmbiCraft, we are committed to protecting your privacy and ensuring the security of your personal information. 
+                At Ambigram Generator, we are committed to protecting your privacy and ensuring the security of your personal information. 
                 This Privacy Policy explains how we collect, use, and safeguard your data when you use our ambigram generator service.
               </p>
             </CardContent>
@@ -149,6 +153,8 @@ const Privacy = () => {
           </Card>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

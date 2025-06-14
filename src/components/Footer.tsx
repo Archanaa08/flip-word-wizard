@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-playfair font-bold mb-4">AmbiCraft</h3>
+            <h3 className="text-2xl font-playfair font-bold mb-4">Ambigram Generator</h3>
             <p className="text-gray-400 font-inter">
               Professional ambigram generator for designers, artists, and typography enthusiasts.
             </p>
