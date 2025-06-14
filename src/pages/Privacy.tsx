@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Eye, Lock, UserCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -144,8 +143,7 @@ const Privacy = () => {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="space-y-2">
-                <p><strong>Email:</strong> privacy@ambicraft.com</p>
-                <p><strong>Address:</strong> 123 Design Street, Creative City, CC 12345</p>
+                <p><strong>Email:</strong> clangity@gmail.com</p>
               </div>
             </CardContent>
           </Card>
