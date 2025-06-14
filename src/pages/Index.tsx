@@ -4,6 +4,8 @@ import Header from '@/components/Header';
 import GeneratorControls from '@/components/GeneratorControls';
 import PreviewArea from '@/components/PreviewArea';
 import AboutSection from '@/components/AboutSection';
+import BenefitsSection from '@/components/BenefitsSection';
+import StepByStepSection from '@/components/StepByStepSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 
@@ -262,6 +264,8 @@ const Index = () => {
       </main>
 
       <AboutSection />
+      <BenefitsSection />
+      <StepByStepSection />
       <FAQSection />
       <Footer />
     </div>
