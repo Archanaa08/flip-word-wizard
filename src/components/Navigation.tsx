@@ -30,7 +30,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-sm md:max-w-none px-4 md:px-0">
+    <div className="absolute top-2 md:top-4 right-4 md:right-8 z-30 w-auto px-4 md:px-0">
       <NavigationMenu className="w-full">
         <NavigationMenuList className="bg-white/10 backdrop-blur-md rounded-full px-3 md:px-6 py-2 flex-wrap justify-center gap-1 md:gap-0">
           <NavigationMenuItem>
