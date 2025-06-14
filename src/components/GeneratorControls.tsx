@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { Type, RotateCcw, Download, Share2, RefreshCw } from 'lucide-react';
+import { Type, RotateCcw, Download, Share2, RefreshCw, Sparkles, Palette, Wand2 } from 'lucide-react';
 
 interface GeneratorControlsProps {
   inputText: string;
@@ -94,65 +93,101 @@ const GeneratorControls = ({
 
   return (
     <div className="space-y-6">
-      <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2 text-2xl font-playfair">
-            <Type className="w-6 h-6 text-ambigram-purple" />
+      <Card className="shadow-2xl border-0 bg-gradient-to-br from-white via-purple-50/30 to-indigo-50/40 backdrop-blur-sm relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-ambigram-purple/10 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-ambigram-blue/10 to-transparent rounded-full translate-y-12 -translate-x-12"></div>
+        
+        <CardHeader className="pb-6 relative">
+          <CardTitle className="flex items-center gap-3 text-3xl font-playfair bg-gradient-to-r from-ambigram-purple via-ambigram-blue to-ambigram-indigo bg-clip-text text-transparent">
+            <div className="relative">
+              <Type className="w-8 h-8 text-ambigram-purple" />
+              <Sparkles className="w-4 h-4 text-ambigram-pink absolute -top-1 -right-1 animate-pulse" />
+            </div>
             Ambigram Generator
           </CardTitle>
-          <CardDescription>
-            Enter your text and customize your ambigram design
+          <CardDescription className="text-lg text-gray-600 font-medium">
+            ✨ Transform your text into stunning ambigrams with professional design tools
           </CardDescription>
+          <div className="flex items-center gap-2 mt-2 text-sm text-ambigram-purple font-medium">
+            <Wand2 className="w-4 h-4" />
+            Create • Customize • Download • Share
+          </div>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <label className="text-sm font-medium mb-2 block">Text Input</label>
+        <CardContent className="space-y-8 relative">
+          <div className="relative">
+            <label className="text-sm font-semibold mb-3 block text-gray-700 flex items-center gap-2">
+              <Type className="w-4 h-4 text-ambigram-purple" />
+              Text Input
+            </label>
             <Input
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="Enter text to convert"
-              className="text-lg font-medium"
+              placeholder="Enter your text to create magic ✨"
+              className="text-xl font-medium h-14 border-2 border-purple-200 focus:border-ambigram-purple transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-lg"
               maxLength={20}
             />
-            <div className="flex flex-wrap gap-2 mt-3">
-              {examples.slice(0, 6).map((example) => (
-                <Button
-                  key={example}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setInputText(example)}
-                  className="text-xs"
-                >
-                  {example}
-                </Button>
-              ))}
+            <div className="text-xs text-gray-500 mt-1 text-right">{inputText.length}/20 characters</div>
+            
+            {/* Enhanced example buttons */}
+            <div className="mt-4">
+              <p className="text-sm font-medium text-gray-600 mb-3 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-ambigram-pink" />
+                Try these popular examples:
+              </p>
+              <div className="grid grid-cols-3 gap-2">
+                {examples.slice(0, 6).map((example, index) => (
+                  <Button
+                    key={example}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setInputText(example)}
+                    className={`text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                      index % 2 === 0 
+                        ? 'border-purple-200 hover:border-ambigram-purple hover:bg-purple-50' 
+                        : 'border-blue-200 hover:border-ambigram-blue hover:bg-blue-50'
+                    }`}
+                  >
+                    {example}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Quick Presets */}
-          <div>
-            <label className="text-sm font-medium mb-2 block">Quick Presets</label>
-            <div className="grid grid-cols-3 gap-2">
-              {presets.map((preset) => (
+          {/* Enhanced Quick Presets */}
+          <div className="bg-gradient-to-r from-purple-50/50 to-blue-50/50 rounded-xl p-4 border border-purple-100">
+            <label className="text-sm font-semibold mb-3 block text-gray-700 flex items-center gap-2">
+              <Palette className="w-4 h-4 text-ambigram-purple" />
+              Quick Style Presets
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {presets.map((preset, index) => (
                 <Button
                   key={preset.name}
                   variant="outline"
                   size="sm"
                   onClick={() => applyPreset(preset)}
-                  className="text-xs h-8"
+                  className={`text-xs h-10 font-medium transition-all duration-300 hover:scale-105 ${
+                    index % 3 === 0 
+                      ? 'border-purple-200 hover:border-ambigram-purple hover:bg-purple-50' 
+                      : index % 3 === 1
+                      ? 'border-blue-200 hover:border-ambigram-blue hover:bg-blue-50'
+                      : 'border-pink-200 hover:border-ambigram-pink hover:bg-pink-50'
+                  }`}
                 >
-                  {preset.name}
+                  ✨ {preset.name}
                 </Button>
               ))}
             </div>
           </div>
 
           <Tabs defaultValue="fonts" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="fonts">Fonts</TabsTrigger>
-              <TabsTrigger value="colors">Colors</TabsTrigger>
-              <TabsTrigger value="effects">Effects</TabsTrigger>
-              <TabsTrigger value="advanced">Advanced</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border border-purple-100">
+              <TabsTrigger value="fonts" className="data-[state=active]:bg-ambigram-purple data-[state=active]:text-white">Fonts</TabsTrigger>
+              <TabsTrigger value="colors" className="data-[state=active]:bg-ambigram-blue data-[state=active]:text-white">Colors</TabsTrigger>
+              <TabsTrigger value="effects" className="data-[state=active]:bg-ambigram-indigo data-[state=active]:text-white">Effects</TabsTrigger>
+              <TabsTrigger value="advanced" className="data-[state=active]:bg-ambigram-pink data-[state=active]:text-white">Advanced</TabsTrigger>
             </TabsList>
             
             <TabsContent value="fonts" className="space-y-4">
@@ -336,25 +371,27 @@ const GeneratorControls = ({
         </CardContent>
       </Card>
 
-      {/* Action Buttons */}
-      <div className="grid grid-cols-2 gap-3">
+      {/* Enhanced Action Buttons */}
+      <div className="grid grid-cols-2 gap-4">
         <Button
           onClick={() => setIsRotated(!isRotated)}
-          className="bg-ambigram-purple hover:bg-ambigram-purple/90"
+          className="bg-gradient-to-r from-ambigram-purple to-ambigram-blue hover:from-ambigram-purple/90 hover:to-ambigram-blue/90 shadow-lg hover:shadow-xl transition-all duration-300 h-12 font-semibold"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
-          {isRotated ? 'Normal' : 'Rotate 180°'}
+          {isRotated ? 'Normal View' : 'Rotate 180°'}
         </Button>
         <Button
           onClick={generateRandom}
           variant="outline"
+          className="border-2 border-ambigram-purple text-ambigram-purple hover:bg-ambigram-purple hover:text-white shadow-lg hover:shadow-xl transition-all duration-300 h-12 font-semibold"
         >
           <RefreshCw className="w-4 h-4 mr-2" />
-          Random
+          Surprise Me!
         </Button>
         <Button
           onClick={handleDownload}
           variant="outline"
+          className="border-2 border-ambigram-blue text-ambigram-blue hover:bg-ambigram-blue hover:text-white shadow-lg hover:shadow-xl transition-all duration-300 h-12 font-semibold"
         >
           <Download className="w-4 h-4 mr-2" />
           Download PNG
@@ -362,9 +399,10 @@ const GeneratorControls = ({
         <Button
           onClick={handleShare}
           variant="outline"
+          className="border-2 border-ambigram-pink text-ambigram-pink hover:bg-ambigram-pink hover:text-white shadow-lg hover:shadow-xl transition-all duration-300 h-12 font-semibold"
         >
           <Share2 className="w-4 h-4 mr-2" />
-          Share
+          Share Magic
         </Button>
       </div>
     </div>
