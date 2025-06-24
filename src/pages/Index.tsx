@@ -102,66 +102,71 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 font-inter">
       {/* Theme Toggle - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-2 right-2 md:top-4 md:right-4 z-50">
         <ThemeToggle />
       </div>
 
       <Header />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-12">
-          <GeneratorControls
-            inputText={inputText}
-            setInputText={setInputText}
-            selectedFont={selectedFont}
-            setSelectedFont={setSelectedFont}
-            textColor={textColor}
-            setTextColor={setTextColor}
-            backgroundColor={backgroundColor}
-            setBackgroundColor={setBackgroundColor}
-            fontSize={fontSize}
-            setFontSize={setFontSize}
-            letterSpacing={letterSpacing}
-            setLetterSpacing={setLetterSpacing}
-            strokeWidth={strokeWidth}
-            setStrokeWidth={setStrokeWidth}
-            shadowBlur={shadowBlur}
-            setShadowBlur={setShadowBlur}
-            rotation={rotation}
-            setRotation={setRotation}
-            skewX={skewX}
-            setSkewX={setSkewX}
-            showGrid={showGrid}
-            setShowGrid={setShowGrid}
-            showOutline={showOutline}
-            setShowOutline={setShowOutline}
-            isRotated={isRotated}
-            setIsRotated={setIsRotated}
-            fonts={fonts}
-            fontCategories={fontCategories}
-            colors={colors}
-            backgroundColors={backgroundColors}
-            examples={examples}
-            presets={presets}
-            handleDownload={handleDownload}
-            handleShare={handleShare}
-            applyPreset={applyPreset}
-            generateRandom={generateRandom}
-          />
+      <main className="container mx-auto px-4 py-6 md:py-12">
+        <div className="flex flex-col xl:grid xl:grid-cols-2 gap-6 md:gap-8 xl:gap-12">
+          {/* Mobile-first: Controls first, then preview */}
+          <div className="order-1 xl:order-1">
+            <GeneratorControls
+              inputText={inputText}
+              setInputText={setInputText}
+              selectedFont={selectedFont}
+              setSelectedFont={setSelectedFont}
+              textColor={textColor}
+              setTextColor={setTextColor}
+              backgroundColor={backgroundColor}
+              setBackgroundColor={setBackgroundColor}
+              fontSize={fontSize}
+              setFontSize={setFontSize}
+              letterSpacing={letterSpacing}
+              setLetterSpacing={setLetterSpacing}
+              strokeWidth={strokeWidth}
+              setStrokeWidth={setStrokeWidth}
+              shadowBlur={shadowBlur}
+              setShadowBlur={setShadowBlur}
+              rotation={rotation}
+              setRotation={setRotation}
+              skewX={skewX}
+              setSkewX={setSkewX}
+              showGrid={showGrid}
+              setShowGrid={setShowGrid}
+              showOutline={showOutline}
+              setShowOutline={setShowOutline}
+              isRotated={isRotated}
+              setIsRotated={setIsRotated}
+              fonts={fonts}
+              fontCategories={fontCategories}
+              colors={colors}
+              backgroundColors={backgroundColors}
+              examples={examples}
+              presets={presets}
+              handleDownload={handleDownload}
+              handleShare={handleShare}
+              applyPreset={applyPreset}
+              generateRandom={generateRandom}
+            />
+          </div>
 
-          <PreviewArea
-            inputText={inputText}
-            renderAmbigram={renderAmbigram}
-            backgroundColor={backgroundColor}
-            showGrid={showGrid}
-            isRotated={isRotated}
-            fontSize={fontSize}
-            selectedFont={selectedFont}
-            fonts={fonts}
-            examples={examples}
-            setInputText={setInputText}
-          />
+          <div className="order-2 xl:order-2">
+            <PreviewArea
+              inputText={inputText}
+              renderAmbigram={renderAmbigram}
+              backgroundColor={backgroundColor}
+              showGrid={showGrid}
+              isRotated={isRotated}
+              fontSize={fontSize}
+              selectedFont={selectedFont}
+              fonts={fonts}
+              examples={examples}
+              setInputText={setInputText}
+            />
+          </div>
         </div>
       </main>
 
